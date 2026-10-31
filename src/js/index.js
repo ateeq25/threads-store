@@ -1,8 +1,11 @@
 import "../styles/main.css";
+import "../styles/header.css";
+import "../styles/home.css";
+
+import loadHome from "./pages/home.js";
 
 const content = document.querySelector("#content");
 
-const heading = document.createElement("h1");
-heading.textContent = "Welcome to THREADS";
+const homePage = loadHome();
 
-content.appendChild(heading);
+content.appendChild(homePage);

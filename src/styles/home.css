@@ -261,3 +261,126 @@
     font-size: var(--text-xs);
   }
 }
+
+/* =========================
+   CATEGORIES
+========================= */
+
+.categories-section {
+  background-color: var(--color-surface);
+}
+
+/* Section heading */
+
+.categories-heading {
+  margin-bottom: var(--space-xl);
+}
+
+.categories-heading h2 {
+  font-size: var(--text-2xl);
+  margin-bottom: 12px;
+}
+
+.categories-heading p {
+  max-width: 500px;
+}
+
+/* Category grid */
+
+.categories-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 20px;
+}
+
+/* Category card */
+
+.category-card {
+  position: relative;
+  display: block;
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
+  background-color: var(--color-sand);
+}
+
+.category-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 500ms ease;
+}
+
+.category-card:hover img {
+  transform: scale(1.05);
+}
+
+/* Image overlay */
+
+.category-overlay {
+  position: absolute;
+  inset: 0;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-start;
+
+  padding: 24px;
+
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.55),
+    rgba(0, 0, 0, 0.05) 60%
+  );
+
+  color: #FFFFFF;
+}
+
+.category-overlay h3 {
+  color: #FFFFFF;
+  font-size: var(--text-xl);
+  margin-bottom: 6px;
+}
+
+.category-overlay span {
+  color: #FFFFFF;
+  font-size: var(--text-sm);
+  opacity: 0.85;
+  transition: opacity var(--transition);
+}
+
+.category-card:hover .category-overlay span {
+  opacity: 1;
+}
+
+/* Responsive layout */
+
+@media (max-width: 1024px) {
+  .categories-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  .categories-heading h2 {
+    font-size: var(--text-xl);
+  }
+
+  .category-overlay {
+    padding: 18px;
+  }
+
+  .category-overlay h3 {
+    font-size: var(--text-lg);
+  }
+}
+
+@media (max-width: 400px) {
+  .categories-overlay {
+    padding: 12px;
+  }
+
+  .category-overlay h3 {
+    font-size: var(--text-base);
+  }
+}

@@ -31,24 +31,59 @@ export default function createHeader() {
   });
 
   // Header actions
-  const actions = document.createElement("div");
-  actions.classList.add("header-actions");
+const actions = document.createElement("div");
+actions.classList.add("header-actions");
 
-  const searchButton = document.createElement("button");
-  searchButton.classList.add("header-icon");
-  searchButton.textContent = "Search";
-  searchButton.setAttribute("aria-label", "Search products");
+// Search button
+const searchButton = document.createElement("button");
+searchButton.classList.add("header-icon");
+searchButton.setAttribute("aria-label", "Search products");
 
-  const cartLink = document.createElement("a");
-  cartLink.classList.add("header-icon");
-  cartLink.href = "#cart";
-  cartLink.setAttribute("aria-label", "Shopping bag");
+searchButton.innerHTML = `
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="21"
+    height="21"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="1.7"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    aria-hidden="true"
+  >
+    <circle cx="11" cy="11" r="7"></circle>
+    <path d="m20 20-4-4"></path>
+  </svg>
+`;
 
-  cartLink.innerHTML = `
-    Bag (<span id="cart-count">0</span>)
-  `;
+// Shopping bag link
+const cartLink = document.createElement("a");
+cartLink.classList.add("header-icon", "cart-link");
+cartLink.href = "#cart";
+cartLink.setAttribute("aria-label", "Shopping cart");
 
-  actions.append(searchButton, cartLink);
+cartLink.innerHTML = `
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="21"
+    height="21"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="1.7"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    aria-hidden="true"
+  >
+    <path d="M5 8h14l1 13H4L5 8Z"></path>
+    <path d="M9 8a3 3 0 0 1 6 0"></path>
+  </svg>
+
+  <span id="cart-count">0</span>
+`;
+
+actions.append(searchButton, cartLink);
 
   // Hamburger menu button
   const menuButton = document.createElement("button");

@@ -24,7 +24,7 @@
   font-family: var(--font-heading);
   font-size: 1.7rem;
   font-weight: 600;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.04em;
 }
 
 /* Navigation */
@@ -53,12 +53,47 @@
   gap: 24px;
 }
 
+/* Icon alignment */
+
 .header-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+
+  padding: 0;
   border: none;
-  background: none;
+  outline: none;
+  background: transparent;
+  box-shadow: none;
+
   color: var(--color-text);
   font-size: var(--text-sm);
   cursor: pointer;
+}
+
+/* Prevent unwanted button styling */
+.header-icon:focus,
+.header-icon:active {
+  outline: none;
+  box-shadow: none;
+  background: transparent;
+}
+
+.header-icon:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 4px;
+}
+
+/* Cart count */
+
+.cart-link {
+  position: relative;
+}
+
+#cart-count {
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
 }
 
 /* Hamburger menu button */

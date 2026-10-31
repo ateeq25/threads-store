@@ -8,7 +8,7 @@ export default function createCategories() {
   heading.classList.add("categories-heading", "container");
 
   const title = document.createElement("h2");
-  title.textContent = "Explore Categories";
+  title.textContent = "Shop by categories";
 
   const description = document.createElement("p");
   description.textContent =

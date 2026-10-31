@@ -12,7 +12,7 @@ export default function createFeaturedProducts() {
   heading.classList.add("featured-heading", "container");
 
   const title = document.createElement("h2");
-  title.textContent = "Featured Pieces";
+  title.textContent = "Explore our featured pieces.";
 
   const description = document.createElement("p");
   description.textContent =

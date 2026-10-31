@@ -2,7 +2,7 @@ import "../styles/main.css";
 import "../styles/header.css";
 import "../styles/home.css";
 
-import loadHome from "./pages/home.js";
+import loadHome from "./pages/home/home.js";
 
 const content = document.querySelector("#content");
 

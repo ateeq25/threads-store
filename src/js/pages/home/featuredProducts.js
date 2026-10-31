@@ -1,4 +1,4 @@
-import createProductCard from "./productCard.js";
+import createProductCard from "../../components/productCard.js";
 
 export default function createFeaturedProducts() {
   const section = document.createElement("section");

@@ -11,6 +11,7 @@ export default function createHeader() {
   // Navigation
   const nav = document.createElement("nav");
   nav.classList.add("main-nav");
+  nav.id = "main-navigation";
 
   const navLinks = [
     { text: "Home", href: "#home" },
@@ -49,7 +50,40 @@ export default function createHeader() {
 
   actions.append(searchButton, cartLink);
 
-  header.append(logo, nav, actions);
+  // Hamburger menu button
+  const menuButton = document.createElement("button");
+  menuButton.classList.add("menu-toggle");
+  menuButton.setAttribute("aria-label", "Open navigation menu");
+  menuButton.setAttribute("aria-expanded", "false");
+  menuButton.setAttribute("aria-controls", "main-navigation");
+  menuButton.textContent = "☰";
+
+  // Toggle navigation menu
+  menuButton.addEventListener("click", () => {
+    const isOpen = nav.classList.toggle("is-open");
+
+    menuButton.setAttribute("aria-expanded", isOpen);
+
+    menuButton.setAttribute(
+      "aria-label",
+      isOpen ? "Close navigation menu" : "Open navigation menu"
+    );
+
+    menuButton.textContent = isOpen ? "✕" : "☰";
+  });
+
+  // Close menu after clicking a navigation link
+  nav.querySelectorAll("a").forEach((link) => {
+    link.addEventListener("click", () => {
+      nav.classList.remove("is-open");
+
+      menuButton.setAttribute("aria-expanded", "false");
+      menuButton.setAttribute("aria-label", "Open navigation menu");
+      menuButton.textContent = "☰";
+    });
+  });
+
+  header.append(logo, nav, actions, menuButton);
 
   return header;
 }

@@ -103,6 +103,7 @@
 
 .featured-products {
   background-color: var(--color-background);
+    padding-block: var(--space-3xl);
 }
 
 /* Section heading */
@@ -132,6 +133,7 @@
 
 .product-card {
   min-width: 0;
+  cursor: pointer;
 }
 
 /* Product images */

@@ -1,3 +1,4 @@
+
 export default function createProductCard(product) {
   const card = document.createElement("article");
   card.classList.add("product-card");
@@ -39,7 +40,13 @@ export default function createProductCard(product) {
 
   const price = document.createElement("p");
   price.classList.add("product-price");
-  price.textContent = product.price;
+
+  // Format product price
+  price.textContent = new Intl.NumberFormat("en-NG", {
+    style: "currency",
+    currency: "NGN",
+    maximumFractionDigits: 0,
+  }).format(product.price);
 
   details.append(name, price);
   card.append(imageContainer, details);

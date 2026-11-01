@@ -1,10 +1,14 @@
-
 import "../styles/main.css";
 import "../styles/header.css";
 import "../styles/home.css";
 
+import createHeader from "./components/header.js";
+import createFooter from "./components/footer.js";
+
 import loadHome from "./pages/home/home.js";
 import loadProducts from "./pages/products/products.js";
+import loadProductDetails from "./pages/product-details/product-details.js";
+import loadCart from "./pages/cart/cart.js";
 
 const content = document.querySelector("#content");
 
@@ -21,11 +25,7 @@ function createEntryId() {
 
 // Initialise the current history entry
 if (!history.state?.entryId) {
-  history.replaceState(
-    { entryId: createEntryId() },
-    "",
-    window.location.href
-  );
+  history.replaceState({ entryId: createEntryId() }, "", window.location.href);
 }
 
 // Render the page based on the current URL
@@ -38,15 +38,29 @@ function renderPage(restoreScroll = false) {
   if (routeParts[0] === "products") {
     const selectedCategory = routeParts[1] || "all";
     page = loadProducts(selectedCategory);
+  } else if (routeParts[0] === "product") {
+    const productId = routeParts[1];
+    page = loadProductDetails(productId);
+  } else if (routeParts[0] === "cart") {
+    page = loadCart();
   } else {
     page = loadHome();
   }
 
-  content.replaceChildren(page);
+  // Create the shared page layout
+const appLayout = document.createElement("div");
+appLayout.classList.add("app-layout");
+
+const header = createHeader();
+const footer = createFooter();
+
+// Assemble the page
+appLayout.append(header, page, footer);
+
+content.replaceChildren(appLayout);
 
   if (restoreScroll) {
-    const savedPosition =
-      scrollPositions.get(history.state?.entryId) ?? 0;
+    const savedPosition = scrollPositions.get(history.state?.entryId) ?? 0;
 
     window.scrollTo(0, savedPosition);
   } else {
@@ -64,7 +78,7 @@ window.addEventListener(
       scrollPositions.set(entryId, window.scrollY);
     }
   },
-  { passive: true }
+  { passive: true },
 );
 
 // Handle internal navigation links
@@ -93,11 +107,7 @@ document.addEventListener("click", (event) => {
   event.preventDefault();
 
   // Create a new browser history entry
-  history.pushState(
-    { entryId: createEntryId() },
-    "",
-    destination.hash
-  );
+  history.pushState({ entryId: createEntryId() }, "", destination.hash);
 
   // Render the new page at the top
   renderPage();

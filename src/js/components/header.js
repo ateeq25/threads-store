@@ -1,3 +1,5 @@
+import { updateHeaderCartCount } from "../utils/cartUtils.js";
+
 export default function createHeader() {
   const header = document.createElement("header");
   header.classList.add("site-header");
@@ -31,15 +33,15 @@ export default function createHeader() {
   });
 
   // Header actions
-const actions = document.createElement("div");
-actions.classList.add("header-actions");
+  const actions = document.createElement("div");
+  actions.classList.add("header-actions");
 
-// Search button
-const searchButton = document.createElement("button");
-searchButton.classList.add("header-icon");
-searchButton.setAttribute("aria-label", "Search products");
+  // Search button
+  const searchButton = document.createElement("button");
+  searchButton.classList.add("header-icon");
+  searchButton.setAttribute("aria-label", "Search products");
 
-searchButton.innerHTML = `
+  searchButton.innerHTML = `
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="21"
@@ -57,13 +59,13 @@ searchButton.innerHTML = `
   </svg>
 `;
 
-// Shopping bag link
-const cartLink = document.createElement("a");
-cartLink.classList.add("header-icon", "cart-link");
-cartLink.href = "#cart";
-cartLink.setAttribute("aria-label", "Shopping cart");
+  // Shopping bag link
+  const cartLink = document.createElement("a");
+  cartLink.classList.add("header-icon", "cart-link");
+  cartLink.href = "#/cart";
+  cartLink.setAttribute("aria-label", "Shopping cart");
 
-cartLink.innerHTML = `
+  cartLink.innerHTML = `
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="21"
@@ -83,7 +85,7 @@ cartLink.innerHTML = `
   <span id="cart-count">0</span>
 `;
 
-actions.append(searchButton, cartLink);
+  actions.append(searchButton, cartLink);
 
   // Hamburger menu button
   const menuButton = document.createElement("button");
@@ -101,7 +103,7 @@ actions.append(searchButton, cartLink);
 
     menuButton.setAttribute(
       "aria-label",
-      isOpen ? "Close navigation menu" : "Open navigation menu"
+      isOpen ? "Close navigation menu" : "Open navigation menu",
     );
 
     menuButton.textContent = isOpen ? "✕" : "☰";
@@ -119,6 +121,7 @@ actions.append(searchButton, cartLink);
   });
 
   header.append(logo, nav, actions, menuButton);
+  updateHeaderCartCount(header);
 
   return header;
 }

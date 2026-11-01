@@ -1,5 +1,3 @@
-import createHeader from "../../components/header.js";
-import createFooter from "../../components/footer.js";
 import createProductCard from "../../components/productCard.js";
 import products from "../../../data/products.json";
 
@@ -9,8 +7,6 @@ export default function loadProducts(initialCategory = "all") {
   const page = document.createElement("div");
   page.classList.add("products-page");
 
-  // Shared header
-  const header = createHeader();
 
   // Main content
   const main = document.createElement("main");
@@ -166,9 +162,8 @@ export default function loadProducts(initialCategory = "all") {
   // Assemble page
   main.append(introduction, controls, productCount, grid);
 
-  const footer = createFooter();
 
-  page.append(header, main, footer);
+  page.append( main,);
 
   return page;
 }

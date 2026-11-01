@@ -24,7 +24,7 @@ export default function createHero() {
   // CTA button
   const button = document.createElement("a");
   button.classList.add("hero-button");
-  button.href = "#collections";
+  button.href = "#/products";
   button.textContent = "Explore Collection";
 
   content.append(eyebrow, heading, description, button);

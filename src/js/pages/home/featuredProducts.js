@@ -35,7 +35,7 @@ export default function createFeaturedProducts() {
 
   const viewAllButton = document.createElement("a");
   viewAllButton.classList.add("view-all-button");
-  viewAllButton.href = "#products";
+  viewAllButton.href = "#/products";
   viewAllButton.textContent = "View All Products";
 
   buttonContainer.appendChild(viewAllButton);

@@ -5,7 +5,7 @@ export default function createHeader() {
   // Brand logo
   const logo = document.createElement("a");
   logo.classList.add("logo");
-  logo.href = "#home";
+  logo.href = "#/";
   logo.textContent = "THREADS";
 
   // Navigation
@@ -14,8 +14,8 @@ export default function createHeader() {
   nav.id = "main-navigation";
 
   const navLinks = [
-    { text: "Home", href: "#home" },
-    { text: "Collections", href: "#collections" },
+    { text: "Home", href: "#/" },
+    { text: "Collections", href: "#/products" },
     { text: "Categories", href: "#categories" },
     { text: "Our Story", href: "#about" },
     { text: "Contact", href: "#contact" },

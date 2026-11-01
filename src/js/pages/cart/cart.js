@@ -122,9 +122,9 @@ export default function loadCart() {
             Shipping and taxes will be calculated at checkout.
           </p>
 
-          <button type="button" class="checkout-button" disabled>
-            Proceed to Checkout
-          </button>
+          <a href="#/checkout" class="checkout-button">
+          Proceed to Checkout
+          </a>
 
           <a href="#/products" class="back-to-shopping">
             Continue Shopping

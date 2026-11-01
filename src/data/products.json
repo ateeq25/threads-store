@@ -1,6 +1,7 @@
 [
   {
     "id": "product-001",
+    "category": "clothing",
     "name": "Relaxed Cotton Shirt",
     "price": 35000,
     "label": "NEW",
@@ -9,6 +10,7 @@
   },
   {
     "id": "product-002",
+    "category": "clothing",
     "name": "Classic Everyday Jacket",
     "price": 65000,
     "label": "TRENDING",
@@ -17,6 +19,7 @@
   },
   {
     "id": "product-003",
+    "category": "clothing",
     "name": "Essential Knit Sweater",
     "price": 42000,
     "label": "NEW",
@@ -25,6 +28,7 @@
   },
   {
     "id": "product-004",
+    "category": "clothing",
     "name": "Tailored Casual Trousers",
     "price": 48000,
     "label": "",
@@ -33,6 +37,7 @@
   },
   {
     "id": "product-005",
+    "category": "bags",
     "name": "Minimal Leather Bag",
     "price": 55000,
     "label": "TRENDING",
@@ -41,6 +46,7 @@
   },
   {
     "id": "product-006",
+    "category": "shoes",
     "name": "Everyday Sneakers",
     "price": 60000,
     "label": "",
@@ -49,6 +55,7 @@
   },
   {
     "id": "product-007",
+    "category": "clothing",
     "name": "Modern Oversized Tee",
     "price": 25000,
     "label": "NEW",
@@ -57,6 +64,7 @@
   },
   {
     "id": "product-008",
+    "category": "clothing",
     "name": "Structured Denim Jacket",
     "price": 58000,
     "label": "",

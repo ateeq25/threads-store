@@ -22,25 +22,25 @@ export default function createCategories() {
       name: "Clothing",
       image:
         "https://images.unsplash.com/photo-1483985988355-763728e1935b?w=900&q=80",
-      link: "#clothing",
+      link: "#/products/clothing",
     },
     {
       name: "Shoes",
       image:
         "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=900&q=80",
-      link: "#shoes",
+      link: "#/products/shoes",
     },
     {
       name: "Bags",
       image:
         "https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=900&q=80",
-      link: "#bags",
+      link: "#/products/bags",
     },
     {
       name: "Accessories",
       image:
         "https://images.unsplash.com/photo-1611652022419-a9419f74343d?w=900&q=80",
-      link: "#accessories",
+      link: "#/products/accessories",
     },
   ];
 

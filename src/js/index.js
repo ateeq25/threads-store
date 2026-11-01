@@ -11,13 +11,25 @@ const content = document.querySelector("#content");
 // Let the application manage scroll restoration
 window.history.scrollRestoration = "manual";
 
-// Store scroll positions against individual history entries
+// Store scroll positions for individual history entries
 const scrollPositions = new Map();
 
-let isHistoryNavigation = false;
+// Generate an ID for each history entry
+function createEntryId() {
+  return crypto.randomUUID();
+}
 
-// Determine which page to display
-function renderPage() {
+// Initialise the current history entry
+if (!history.state?.entryId) {
+  history.replaceState(
+    { entryId: createEntryId() },
+    "",
+    window.location.href
+  );
+}
+
+// Render the page based on the current URL
+function renderPage(restoreScroll = false) {
   const currentRoute = window.location.hash.slice(1) || "/";
   const routeParts = currentRoute.split("/").filter(Boolean);
 
@@ -32,29 +44,38 @@ function renderPage() {
 
   content.replaceChildren(page);
 
-  if (isHistoryNavigation) {
-    // Restore the position saved for this history entry
+  if (restoreScroll) {
     const savedPosition =
       scrollPositions.get(history.state?.entryId) ?? 0;
 
     window.scrollTo(0, savedPosition);
   } else {
-    // New navigation starts at the top
     window.scrollTo(0, 0);
   }
-
-  isHistoryNavigation = false;
 }
 
-// Save the current scroll position before leaving a page
-window.addEventListener("click", (event) => {
+// Keep the current entry's scroll position updated
+window.addEventListener(
+  "scroll",
+  () => {
+    const entryId = history.state?.entryId;
+
+    if (entryId) {
+      scrollPositions.set(entryId, window.scrollY);
+    }
+  },
+  { passive: true }
+);
+
+// Handle internal navigation links
+document.addEventListener("click", (event) => {
   const link = event.target.closest("a");
 
   if (!link) return;
 
   const destination = new URL(link.href, window.location.href);
 
-  // Only handle internal hash-based navigation
+  // Only intercept internal application routes
   if (
     destination.origin !== window.location.origin ||
     !destination.hash.startsWith("#/")
@@ -62,27 +83,30 @@ window.addEventListener("click", (event) => {
     return;
   }
 
-  // Ignore links that point to the current route
-  if (destination.hash === window.location.hash) return;
+  // Don't navigate if the route hasn't changed
+  if (destination.hash === window.location.hash) {
+    event.preventDefault();
+    return;
+  }
 
-  // Save the current history entry's scroll position
-  scrollPositions.set(history.state?.entryId, window.scrollY);
-});
+  // Allow the router to manage navigation
+  event.preventDefault();
 
-// Restore the correct page when navigating through browser history
-window.addEventListener("popstate", () => {
-  isHistoryNavigation = true;
+  // Create a new browser history entry
+  history.pushState(
+    { entryId: createEntryId() },
+    "",
+    destination.hash
+  );
+
+  // Render the new page at the top
   renderPage();
 });
 
-// Initialise the first history entry
-const initialEntryId = crypto.randomUUID();
-
-history.replaceState(
-  { entryId: initialEntryId },
-  "",
-  window.location.href
-);
+// Handle browser Back and Forward
+window.addEventListener("popstate", () => {
+  renderPage(true);
+});
 
 // Render the initial page
 renderPage();

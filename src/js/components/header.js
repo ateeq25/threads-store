@@ -5,7 +5,7 @@ export default function createHeader() {
   // Brand logo
   const logo = document.createElement("a");
   logo.classList.add("logo");
-  logo.href = "#home";
+  logo.href = "#/";
   logo.textContent = "THREADS";
 
   // Navigation

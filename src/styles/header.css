@@ -170,3 +170,17 @@
     font-size: var(--text-xs);
   }
 }
+
+.cart-count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 18px;
+  height: 18px;
+  padding-inline: 4px;
+  border-radius: 50%;
+  background-color: var(--color-text);
+  color: var(--color-surface);
+  font-size: 10px;
+  line-height: 1;
+}

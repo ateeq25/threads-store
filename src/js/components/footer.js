@@ -11,7 +11,7 @@ export default function createFooter() {
 
   const logo = document.createElement("a");
   logo.classList.add("footer-logo");
-  logo.href = "#home";
+  logo.href = "#/";
   logo.textContent = "THREADS";
 
   const description = document.createElement("p");
@@ -21,35 +21,35 @@ export default function createFooter() {
   brand.append(logo, description);
 
   // Footer navigation
-  const footerGroups = [
-    {
-      title: "Shop",
-      links: [
-        { text: "All Products", href: "#products" },
-        { text: "Clothing", href: "#clothing" },
-        { text: "Shoes", href: "#shoes" },
-        { text: "Bags", href: "#bags" },
-        { text: "Accessories", href: "#accessories" },
-      ],
-    },
-    {
-      title: "Information",
-      links: [
-        { text: "Our Story", href: "#about" },
-        { text: "Contact", href: "#contact" },
-        { text: "Shipping", href: "#shipping" },
-        { text: "Returns", href: "#returns" },
-      ],
-    },
-    {
-      title: "Follow Us",
-      links: [
-        { text: "Instagram", href: "https://instagram.com/" },
-        { text: "TikTok", href: "https://tiktok.com/" },
-        { text: "Facebook", href: "https://facebook.com/" },
-      ],
-    },
-  ];
+const footerGroups = [
+  {
+    title: "Shop",
+    links: [
+      { text: "All Products", href: "#/products" },
+      { text: "Clothing", href: "#/products/clothing" },
+      { text: "Shoes", href: "#/products/shoes" },
+      { text: "Bags", href: "#/products/bags" },
+      { text: "Accessories", href: "#/products/accessories" },
+    ],
+  },
+  {
+    title: "Information",
+    links: [
+      { text: "Our Story", href: "#about" },
+      { text: "Contact", href: "#contact" },
+      { text: "Shipping", href: "#shipping" },
+      { text: "Returns", href: "#returns" },
+    ],
+  },
+  {
+    title: "Follow Us",
+    links: [
+      { text: "Instagram", href: "https://instagram.com/" },
+      { text: "TikTok", href: "https://tiktok.com/" },
+      { text: "Facebook", href: "https://facebook.com/" },
+    ],
+  },
+];
 
   const navigation = document.createElement("div");
   navigation.classList.add("footer-navigation");
@@ -91,11 +91,8 @@ export default function createFooter() {
   copyright.textContent =
     `© ${new Date().getFullYear()} THREADS. All rights reserved.`;
 
-  const backToTop = document.createElement("a");
-  backToTop.href = "#home";
-  backToTop.textContent = "Back to top ↑";
 
-  bottom.append(copyright, backToTop);
+  bottom.append(copyright,);
 
   container.append(brand, navigation);
   footer.append(container, bottom);

@@ -9,6 +9,8 @@ import loadHome from "./pages/home/home.js";
 import loadProducts from "./pages/products/products.js";
 import loadProductDetails from "./pages/product-details/product-details.js";
 import loadCart from "./pages/cart/cart.js";
+import loadCheckout from "./pages/checkout/checkout.js";
+import loadOrderConfirmation from "./pages/order-confirmation/order-confirmation.js";
 
 const content = document.querySelector("#content");
 
@@ -43,21 +45,26 @@ function renderPage(restoreScroll = false) {
     page = loadProductDetails(productId);
   } else if (routeParts[0] === "cart") {
     page = loadCart();
+  } else if (routeParts[0] === "checkout") {
+    page = loadCheckout();
+  } else if (routeParts[0] === "order-confirmation") {
+    const orderId = routeParts[1];
+    page = loadOrderConfirmation(orderId);
   } else {
     page = loadHome();
   }
 
   // Create the shared page layout
-const appLayout = document.createElement("div");
-appLayout.classList.add("app-layout");
+  const appLayout = document.createElement("div");
+  appLayout.classList.add("app-layout");
 
-const header = createHeader();
-const footer = createFooter();
+  const header = createHeader();
+  const footer = createFooter();
 
-// Assemble the page
-appLayout.append(header, page, footer);
+  // Assemble the page
+  appLayout.append(header, page, footer);
 
-content.replaceChildren(appLayout);
+  content.replaceChildren(appLayout);
 
   if (restoreScroll) {
     const savedPosition = scrollPositions.get(history.state?.entryId) ?? 0;

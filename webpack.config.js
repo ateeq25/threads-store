@@ -32,8 +32,13 @@ export default {
   ],
 
   devServer: {
-    static: "./dist",
+    static: {
+      directory: path.resolve(__dirname, "dist"),
+    },
     open: true,
     hot: true,
+    client: {
+      logging: "warn",
+    },
   },
 };

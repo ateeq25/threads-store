@@ -92,3 +92,8 @@ export function updateHeaderCartCount(container = document) {
     cartCount.textContent = getCartCount();
   }
 }
+
+
+export function clearCart() {
+  localStorage.removeItem(CART_STORAGE_KEY);
+}
